@@ -1,0 +1,11 @@
+# Compiled class file
+*.class
+
+# Bin output folder
+bin/
+
+# VSCode config
+.vscode/
+
+# Log files
+*.log
