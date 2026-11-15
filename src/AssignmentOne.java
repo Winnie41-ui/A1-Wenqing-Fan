@@ -38,30 +38,47 @@ public class AssignmentOne {
         System.out.println(diet);
         System.out.println("--------------------------------");
 
-        // ========== Part3 Appointment Test ==========
-        Appointment app1 = new Appointment(5001, "Tom", "0411111111", diet, "Monday");
-        Appointment app2 = new Appointment(5002, "Lily", "0422222222", gp, "Thursday");
-
+        // ========== Part4‑Part6 Appointment Test ==========
         AppointmentManager manager = new AppointmentManager();
+
+        // Scenario 1: Successfully added a reservation normally
+        Appointment app1 = new Appointment(5001, "Tom", "0411111111", diet, "09:00");
+        Appointment app2 = new Appointment(5002, "Lily", "0422222222", gp, "08:30");
+        Appointment app3 = new Appointment(5003, "Jack", "0433333333", gp, "10:00");
+
+        System.out.println("=== Add valid appointments ===");
         manager.addAppointment(app1);
         manager.addAppointment(app2);
+        manager.addAppointment(app3);
 
-        System.out.println("=== All Appointments ===");
+        //Scenario 2: Error test: Duplicate booking for the same GP at the same time
+        System.out.println("\n=== Test double‑booking error scenario ===");
+        Appointment conflictApp = new Appointment(5004, "Amy", "0444444444", gp, "08:30");
+        manager.addAppointment(conflictApp);
+
+        // All appointments, sorted by time
+
+        System.out.println("\n=== All appointments sorted by time ===");
+        manager.sortAppointmentsByTime();
         manager.printAllAppointments();
 
-        Appointment found = manager.findAppointmentById(5001);
-        if (found != null) {
-            System.out.println("\nFound by appointment ID: " + found);
-        }
-
-        System.out.println("\n=== Appointments for professional ID 1 (Dr.Alice GP) ===");
-        ArrayList<Appointment> proAppList = manager.findAppointmentsByProfessionalId(1);
-        for(Appointment ap : proAppList){
+        // Filter appointments by patient phone
+        System.out.println("\n=== Filter appointments by patient phone 0422222222 ===");
+        ArrayList<Appointment> patientApps = manager.findAppointmentsByPatientPhone("0422222222");
+        for(Appointment ap : patientApps){
             System.out.println(ap);
         }
 
-        manager.deleteAppointmentById(5001);
-        System.out.println("\n=== After deleting appointment 5001 ===");
+        // Normal cancellation: Medical ID+time
+        System.out.println("\n=== Cancel appointment proId 1 at 08:30 ===");
+        manager.cancelAppointmentByProAndTime(1,"08:30");
+        manager.printAllAppointments();
+
+        // Scenario 3: Error test: Cancel non-existent appointment
+        System.out.println("\n=== Test cancel non‑existent appointment ===");
+        manager.cancelAppointmentByProAndTime(999,"14:00");
+
+        System.out.println("\n=== Final appointment list ===");
         manager.printAllAppointments();
     }
 }

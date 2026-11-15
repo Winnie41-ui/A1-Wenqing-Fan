@@ -7,18 +7,18 @@ public class Appointment {
     private String patientName;
     private String patientPhone;
     private HealthProfessional professional;
-    private String appointmentDay;
+    private String timeSlot;
 
     /**
      * Create a new appointment.
      */
     public Appointment(int appointmentId, String patientName, String patientPhone,
-                       HealthProfessional professional, String appointmentDay) {
+                       HealthProfessional professional, String timeSlot) {
         this.appointmentId = appointmentId;
         this.patientName = patientName;
         this.patientPhone = patientPhone;
         this.professional = professional;
-        this.appointmentDay = appointmentDay;
+        this.timeSlot = timeSlot;
     }
 
     public int getAppointmentId() {
@@ -37,8 +37,8 @@ public class Appointment {
         return professional;
     }
 
-    public String getAppointmentDay() {
-        return appointmentDay;
+    public String getTimeSlot() {
+        return timeSlot;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Appointment {
         return "Appointment ID: " + appointmentId
                 + " | Patient: " + patientName
                 + " | Phone: " + patientPhone
-                + " | Day: " + appointmentDay
+                + " | Time Slot: " + timeSlot
                 + " | Provider: [" + professional.getRoleDescription() + "]";
     }
 }
