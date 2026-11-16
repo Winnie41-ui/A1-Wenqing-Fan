@@ -42,9 +42,9 @@ public class AssignmentOne {
         AppointmentManager manager = new AppointmentManager();
 
         // Scenario 1: Successfully added a reservation normally
-        Appointment app1 = new Appointment(5001, "Tom", "0411111111", diet, "09:00");
-        Appointment app2 = new Appointment(5002, "Lily", "0422222222", gp, "08:30");
-        Appointment app3 = new Appointment(5003, "Jack", "0433333333", gp, "10:00");
+        Appointment app1 = new Appointment(5001, "Tom", "0411111111", diet, "09:00", "Routine nutrition check");
+        Appointment app2 = new Appointment(5002, "Lily", "0422222222", gp, "08:30", "Regular follow-up");
+        Appointment app3 = new Appointment(5003, "Jack", "0433333333", gp, "10:00", "First visit, penicillin allergy");
 
         System.out.println("=== Add valid appointments ===");
         manager.addAppointment(app1);
@@ -53,7 +53,7 @@ public class AssignmentOne {
 
         //Scenario 2: Error test: Duplicate booking for the same GP at the same time
         System.out.println("\n=== Test double‑booking error scenario ===");
-        Appointment conflictApp = new Appointment(5004, "Amy", "0444444444", gp, "08:30");
+        Appointment conflictApp = new Appointment(5004, "Amy", "0444444444", gp, "08:30", "Stomach pain consultation");
         manager.addAppointment(conflictApp);
 
         // All appointments, sorted by time

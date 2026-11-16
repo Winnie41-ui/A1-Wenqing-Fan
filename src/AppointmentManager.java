@@ -16,7 +16,7 @@ public class AppointmentManager {
      * return true if add success, false for conflict.
      */
     public boolean addAppointment(Appointment newApp) {
-        // 检查重复：同一个医护，同一个时间段
+        // Duplicate check: same medical staff, same time period
         for(Appointment a : appointmentList){
             if(a.getProfessional().getId() == newApp.getProfessional().getId()
                     && a.getTimeSlot().equals(newApp.getTimeSlot())){
